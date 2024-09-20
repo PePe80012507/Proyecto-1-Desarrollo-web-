@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Tienda Electrónica</title>
+    <!-- Importamos Google Fonts para una mejor tipografía -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome para los iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Resetear márgenes y paddings por defecto */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Estilos generales */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Estilo para la barra superior (header) */
+        header {
+            background-color: #2d2d7c;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        header div {
+            display: flex;
+            align-items: center;
+        }
+
+        header div img {
+            margin-right: 10px;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+        }
+
+        /* Estilos para la barra de navegación */
+        nav {
+            background-color: #333; 
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            display: block;
+            color: white;
+            font-weight: 500;
+            text-align: center;
+            padding: 15px 20px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #555; 
+            border-radius: 5px;
+        }
+
+        /* Barra de búsqueda */
+        .search-bar {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-bar input[type="text"] {
+            padding: 7px;
+            border-radius: 3px;
+            border: none;
+            margin-right: 10px;
+        }
+
+        .search-bar button {
+            padding: 7px 15px;
+            background-color: #ff4081;
+            border: none;
+            border-radius: 3px;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Estilo de la sección de productos */
+        .carousel-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 30px auto;
+            overflow: hidden;
+        }
+
+        .productos {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .producto {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 15px;
+            flex-basis: 30%; /* Tamaño de las tarjetas */
+            text-align: center;
+            padding: 15px;
+        }
+
+        .producto img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .producto p {
+            margin: 5px 0;
+            font-size: 1em;
+        }
+
+        .producto strong {
+            font-size: 1.2em;
+            color: #4CAF50;
+        }
+
+        .producto del {
+            color: #999;
+        }
+
+        .producto a {
+            display: inline-block;
+            margin-top: 10px;
+            background-color: #ff4081;
+            color: white;
+            padding: 12px 25px;
+            font-size: 1.1em;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .producto a:hover {
+            background-color: #ff647d;
+        }
+
+        /* Flechas de navegación */
+        .flecha {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            z-index: 1; /* Asegura que las flechas estén delante de los productos */
+        }
+
+        .flecha-izquierda {
+            left: -50px; /* Separar más de los productos */
+        }
+
+        .flecha-derecha {
+            right: -50px; /* Separar más de los productos */
+        }
+
+        /* Pie de página */
+        footer {
+            background-color: #333; 
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 40px;
+            width: 100%;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Estilos para los iconos sociales en el pie de página */
+        .social-icons {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* Espacio entre los iconos */
+        }
+
+        .social-icons .icon {
+            color: white;
+            font-size: 24px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons .icon:hover {
+            color: #ff4081; /* Color al hacer hover */
+        }
+
+	.logo {
+    	    height: 100px;
+  	}
+    </style>
+</head>
+<body>
+
+    <!-- Barra superior -->
+    <header>
+        <div>
+            <img src="C:\Users\Elgar\Downloads\WhatsApp Image 2024-09-20 at 2.49.53 PM.jpeg" alt="Logo RGO" class="logo">
+            <span>Envío gratuito en 24 - 72 horas a partir de 65€</span>
+        </div>
+    </header>
+
+    <!-- Barra de navegación -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="productos.html">Productos</a></li>
+            <li><a href="contacto.html">Incio de Sesión</a></li>
+        </ul>
+        <!-- Barra de búsqueda -->
+        <div class="search-bar">
+            <input type="text" placeholder="Buscar productos...">
+            <button type="button">Buscar</button>
+        </div>
+    </nav>
+
+    <!-- Sección de productos destacados con carrusel -->
+    <section class="carousel-container">
+        <button class="flecha flecha-izquierda" onclick="moverIzquierda()">&#9664;</button>
+        <div class="productos" id="productos">
+            <!-- Producto 1 -->
+            <div class="producto">
+                <p>iPhone 15 Pro Max</p>
+                <img src="https://mac-center.com/cdn/shop/files/IMG-10942145_9ffd02ae-e4fb-4236-8a87-43074f2767b7.jpg?v=1723752084&width=823" alt="iPhone 15 Pro Max">
+                <p><strong>PRECIO: $1,459.96 USD</strong> <del>$1,599.99</del></p>
+                <p>Diseño de titanio, Frente de Ceramic Shield, Parte posterior de vidrio mate texturizado</p>
+                <a href="#">Añadir al carrito</a>
+            </div>
+
+            <!-- Producto 2 -->
+            <div class="producto">
+                <p>Macbook Air De 13 Pulgadas</p>
+                <img src="https://macstore.com.pa/cdn/shop/files/MacBook_Air_13_in_M3_Midnight_PDP_Image_Position_1__COES_e62d9ee5-dbb0-4405-a911-e94ca7823e04.jpg?v=1721298395&width=1920" alt="MacBook Air 13 pulgadas">
+                <p><strong>PRECIO: $1,389.96 USD</strong> <del>$1,499.99</del></p>
+                <p>Pantalla Retina de 13.3 pulgadas, Touch ID, dos puertos USB-C</p>
+                <a href="#">Añadir al carrito</a>
+            </div>
+
+            <!-- Producto 3 -->
+            <div class="producto">
+		<p>LED FHD T5300</p>
+                <img src="https://images.samsung.com/is/image/samsung/latin-fhd-t5300-un43t5300apxpa-frontblack-229166470?$650_519_PNG$" alt="LED FHD T5300">
+                <p><strong>PRECIO: $379.96 USD</strong> <del>$499.99</del></p>
+                <p>Smart TV, Resolución 1080p, Compatible con Alexa</p>
+                <a href="#">Añadir al carrito</a>
+            </div>
+
+        <!-- Producto 4 -->
+        <div class="producto">
+	    <p>MacBook Pro 16</p>
+            <img src="https://macstore.com.pa/cdn/shop/files/MacBook_Pro_16-in_Silver_PDP_Image_Position-1__ESES_cd5b70ce-0fbc-4d53-bc72-b5c7d014d684.jpg?v=1700306839	     &width=823.jpg" alt="MacBook Pro 16">
+            <p><strong>PRECIO: $2,499.96 USD</strong> <del>$2,999.99</del></p>
+            <p>Chip M1 Pro, Teclado retroiluminado, Pantalla Retina de 16 pulgadas</p>
+            <a href="#">Añadir al carrito</a>
+        </div>
+
+        <!-- Producto 5 -->
+        <div class="producto">
+	    <p>Canon EOS R6</p>
+            <img src="https://estore.canon.com.pa/wcsstore/CPSACatalogAssetStore/eos-r6-1_xl.jpg" alt="Canon EOS R6">
+            <p><strong>PRECIO: $2,499.96 USD</strong> <del>$2,699.99</del></p>
+            <p>Cámara Mirrorless, Sensor Full-Frame, 20MP</p>
+            <a href="#">Añadir al carrito</a>
+        </div>
+
+        <!-- Producto 6 -->
+        <div class="producto">
+	    <p>Lenovo IdeaPad 3</p>
+            <img src="https://www.multimax.net/cdn/shop/files/Lenovo-Ideapad-1_1200x_d1dda39e-80d1-4454-a310-ac0827d001b2_1200x.jpg?v=1694113384" alt="Lenovo IdeaPad 	     3">
+            <p><strong>PRECIO: $679.96 USD</strong> <del>$749.99</del></p>
+            <p>Procesador Intel i5, 8GB RAM, 512GB SSD</p>
+            <a href="#">Añadir al carrito</a>
+        </div>
+
+    </div>
+    <button class="flecha flecha-derecha" onclick="moverDerecha()">&#9654;</button>
+</section>
+
+        <!-- Pie de página -->
+        <footer>
+            <p>&copy; 2024 Mi Tienda Electrónica. Todos los derechos reservados.</p>
+            <div class="social-icons">
+                <a href="https://www.instagram.com/tuusuario" target="_blank" class="icon">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.facebook.com/tuusuario" target="_blank" class="icon">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://twitter.com/tuusuario" target="_blank" class="icon">
+                    <i class="fab fa-twitter"></i>
+                </a>
+            </div>
+        </footer>
+
+        <script>
+            // Lógica para el movimiento del carrusel (puedes ajustar según tu necesidad)
+            let posicion = 0;
+            const productos = document.getElementById('productos');
+
+            function moverDerecha() { 
+                posicion -= 300;
+                productos.style.transform = 'translateX(' + posicion + '%)';  
+            }
+
+            function moverIzquierda() {
+                posicion += 300;
+                productos.style.transform = 'translateX(' + posicion + '%)';
+            }
+        </script>
+
+
+</body>
+</html>
